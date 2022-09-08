@@ -1,0 +1,20 @@
+<h1>New game</h1>
+<div class="card-group">
+  <% @string.each do |letter|%>
+    <div class="card text-white bg-primary m-2" style="max-width: 12rem;">
+      <div class="card-body">
+        <%= letter %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<form action="/score" method="post" data-turbo="false">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :string, @string %>
+  <%= hidden_field_tag :time, Time.new %>
+  <div class="form-group">
+    <label for="word">What is the longest word you can find?</label>
+    <input type="text" name="word" class="form-control" id="word">
+  </div>
+  <button type="submit" class="btn btn-primary">Play</button>
+</form>
